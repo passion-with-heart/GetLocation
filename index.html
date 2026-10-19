@@ -1,1 +1,26 @@
 
+<!DOCTYPE html>
+<html>
+<body>
+  <button onclick="shareLocation()">Share Location</button>
+  <p id="status"></p>
+
+  <script>
+    function shareLocation() {
+      navigator.geolocation.getCurrentPosition(async (pos) => {
+        const { latitude, longitude } = pos.coords;
+
+        document.getElementById("status").innerHTML =
+          `Latitude: ${latitude}<br>Longitude: ${longitude}<br>
+          <a target="_blank" rel="noopener noreferrer"
+             href="https://maps.google.com/?q=${latitude},${longitude}">
+             View Location
+          </a>`;
+      }, () => {
+        document.getElementById("status").textContent =
+          "Please allow location permission.";
+      });
+    }
+  </script>
+</body>
+</html>
